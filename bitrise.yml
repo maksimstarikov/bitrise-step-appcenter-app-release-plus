@@ -9,7 +9,7 @@ app:
   - BITRISE_STEP_ID: appcenter-app-release-plus
   - BITRISE_STEP_VERSION: "0.0.1"
   - BITRISE_STEP_GIT_CLONE_URL: https://github.com/maksimstarikov/bitrise-step-appcenter-app-release-plus.git
-  - MY_STEPLIB_REPO_FORK_GIT_URL: $MY_STEPLIB_REPO_FORK_GIT_URL
+  - MY_STEPLIB_REPO_FORK_GIT_URL: https://github.com/maksimstarikov/bitrise-steplib.git
 
 workflows:
   test:
@@ -19,7 +19,7 @@ workflows:
         - content: |
             #!/bin/bash
             echo "Just an example 'secrets' print."
-            echo "The value of 'A_SECRET_PARAM' is: $A_SECRET_PARAM"
+            echo "The value of 'APPCENTER_API_TOKEN' is: $APPCENTER_API_TOKEN"
     - change-workdir:
         title: Switch working dir to test / _tmp dir
         description: |-
@@ -40,7 +40,12 @@ workflows:
           file if you would not specify another value.
         run_if: true
         inputs:
-        - example_step_input: Example Step Input's value
+        - appcenter_name: $APPCENTER_NAME
+        - appcenter_org: $APPCENTER_ORG
+        - artifact_path: $ARTIFACT_PATH
+        - release_notes: $RELEASE_NOTES
+        - distribution_groups: $DISTRIBUTION_GROUPS
+        - notify_testers: $NOTIFY_TESTERS
     - script:
         inputs:
         - content: |
