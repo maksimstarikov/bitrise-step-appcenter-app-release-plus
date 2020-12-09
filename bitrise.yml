@@ -40,6 +40,7 @@ workflows:
           file if you would not specify another value.
         run_if: true
         inputs:
+        - appcenter_api_token: $APPCENTER_API_TOKEN
         - appcenter_name: $APPCENTER_NAME
         - appcenter_org: $APPCENTER_ORG
         - artifact_path: $ARTIFACT_PATH
